@@ -1,6 +1,7 @@
 # Cálculo de Salário Líquido
 
 - Este projeto foi feito com a finalidade de praticar os princípios SOLID, e de Design Patterns.
+- Testes Unitários utilizando xUnit e MSTest.
 - No cálculo estão sendo considerados o INSS e IRRF.
 
 ### Tabela do INSS considerada:
