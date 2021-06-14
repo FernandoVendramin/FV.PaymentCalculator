@@ -1,4 +1,5 @@
 ﻿using FV.PaymentCalculator.Core.DTOs.Base;
+using FV.PaymentCalculator.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,21 +9,20 @@ namespace FV.PaymentCalculator.Core.DTOs
     {
         public CalcPaymentResponse()
         {
-            Data = new CalcPaymentData();
             Messages = new List<string>();
         }
 
-        public CalcPaymentResponse(CalcPaymentData data)
+        public CalcPaymentResponse(Salary data)
         {
             Data = data;
             Messages = new List<string>();
         }
 
-        public CalcPaymentData Data { get; private set; }
+        public Salary Data { get; private set; }
         public bool Success { get => Messages == null || Messages.Count() == 0; }
         public List<string> Messages { get; private set; }
 
-        public void SetData (CalcPaymentData data)
+        public void SetData (Salary data)
         {
             Data = data;
         }

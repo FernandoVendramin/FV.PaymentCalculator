@@ -31,7 +31,10 @@ namespace FV.PaymentCalculator.Core.Services
 
         private void ValidateDiscount(CalcPaymentRequest request, CalcPaymentResponse response)
         {
-            if (request.Salary < request.Discounts)
+            if (request.Salary < request.OtherDiscounts)
+                response.Messages.Add(Messages.DiscountValidation);
+
+            if (request.Salary < request.HealthCareDiscount)
                 response.Messages.Add(Messages.DiscountValidation);
         }
     }

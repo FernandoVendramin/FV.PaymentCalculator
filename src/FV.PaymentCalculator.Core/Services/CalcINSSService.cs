@@ -1,5 +1,6 @@
 ﻿using FV.PaymentCalculator.Core.DTOs;
 using FV.PaymentCalculator.Core.Interfaces;
+using FV.PaymentCalculator.Core.Models;
 using FV.PaymentCalculator.Core.Utils;
 using System;
 using System.Collections.Generic;
@@ -16,20 +17,20 @@ namespace FV.PaymentCalculator.Core.Services
             _taxConfiguration = new TaxConfiguration();
         }
 
-        public override void Calculate(CalcPaymentRequest reques, CalcPaymentResponse response)
+        public override void Calculate(Salary salary)
         {
             var calcPaymentItem = new CalcPaymentItem(Messages.INSSItem);
-            var calcValues = new Dictionary<double, double>();
+            var calcValues = new Dictionary<decimal, decimal>();
 
-            double currentValue = reques.Salary;
+            //decimal currentValue = salary.Value;
             foreach (var item in _taxConfiguration.INSSItens)
             {
-                CalcTaxByRange(currentValue, item, _taxConfiguration.INSSItens, calcValues);
+                CalcTaxByRange(salary.Value, item, _taxConfiguration.INSSItens, calcValues);
             }
-            calcPaymentItem.SetReference(calcValues.Max(x => x.Key));
-            calcPaymentItem.SetDiscounts(Math.Round(calcValues.Sum(x => x.Key * x.Value / 100), 2));
 
-            response.Data.Itens.Add(calcPaymentItem);
+            var discount = (decimal)Math.Round(calcValues.Sum(x => x.Key * x.Value / 100), 2);
+            salary.Value = salary.Value - discount;
+            salary.Disconts.Add($"INSS - {calcValues.Max(x => x.Key)} %", discount);
         }
     }
 }

@@ -3,11 +3,11 @@ using FV.PaymentCalculator.Core.Models;
 
 namespace FV.PaymentCalculator.Core.Services
 {
-    public class CalcOtherDiscountsService : ICalcOtherDiscountsService
+    public class CalcHealthCareDiscountService : ICalcHealthCareDiscountService
     {
         private readonly decimal _value = 0;
 
-        public CalcOtherDiscountsService(decimal value)
+        public CalcHealthCareDiscountService(decimal value)
         {
             _value = value;
         }
@@ -15,7 +15,7 @@ namespace FV.PaymentCalculator.Core.Services
         public void Calculate(Salary salary)
         {
             salary.Value = salary.Value - _value;
-            salary.Disconts.Add("Others", _value);
+            salary.Disconts.Add("Health Care", _value);
         }
     }
 }

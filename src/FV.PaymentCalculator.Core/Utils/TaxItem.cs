@@ -3,10 +3,10 @@
     public class TaxItem
     {
         public int Order { get; set; }
-        public double Min { get; set; }
-        public double Max { get; set; }
-        public double Ref { get; set; }
-        public double SalaryRange { get; set; }
+        public decimal Min { get; set; }
+        public decimal Max { get; set; }
+        public decimal Ref { get; set; }
+        public decimal SalaryRange { get; set; }
         public bool Free { get; set; }
     }
 }
