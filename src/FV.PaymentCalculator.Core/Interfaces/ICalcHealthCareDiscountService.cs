@@ -1,6 +1,6 @@
 ﻿namespace FV.PaymentCalculator.Core.Interfaces
 {
-    interface ICalcHealthCareDiscountService : ICalcService
+    public interface ICalcHealthCareDiscountService : ICalcService
     {
     }
 }

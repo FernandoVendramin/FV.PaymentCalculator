@@ -35,7 +35,6 @@ namespace FV.PaymentCalculator.Core.DTOs
             Dependents = dependents;
         }
 
-
         public void SetOtherDiscounts(decimal discounts)
         {
             OtherDiscounts = discounts;

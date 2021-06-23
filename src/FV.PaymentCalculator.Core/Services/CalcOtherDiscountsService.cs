@@ -1,9 +1,10 @@
 ﻿using FV.PaymentCalculator.Core.Interfaces;
 using FV.PaymentCalculator.Core.Models;
+using FV.PaymentCalculator.Core.Utils;
 
 namespace FV.PaymentCalculator.Core.Services
 {
-    public class CalcOtherDiscountsService : ICalcOtherDiscountsService
+    public class CalcOtherDiscountsService : Interfaces.ICalcOtherDiscountsService
     {
         private readonly decimal _value = 0;
 
@@ -15,7 +16,7 @@ namespace FV.PaymentCalculator.Core.Services
         public void Calculate(Salary salary)
         {
             salary.Value = salary.Value - _value;
-            salary.Disconts.Add("Others", _value);
+            salary.Discounts.Add(DiscountHelper.GetOthersText, _value);
         }
     }
 }

@@ -8,21 +8,21 @@ using Xunit;
 
 namespace FV.PaymentCalculator.Core.XUnitTest.Services
 {
-    public class CalcOtherDiscountsServiceTest
+    public class CalcHealthCareDiscountServiceTest
     {
-        private ICalcOtherDiscountsService _calcOtherDiscountsService;
+        private ICalcHealthCareDiscountService _calcHealthCareDiscountService;
 
         [Theory]
         [MemberData(nameof(IsValidData))]
-        public void Calc_OtherDiscounts_IsValid(Salary salary, decimal value)
+        public void Calc_HealthCareDiscounts_IsValid(Salary salary, decimal value)
         {
-            _calcOtherDiscountsService = new CalcOtherDiscountsService(value);
-            _calcOtherDiscountsService.Calculate(salary);
+            _calcHealthCareDiscountService = new CalcHealthCareDiscountService(value);
+            _calcHealthCareDiscountService.Calculate(salary);
 
             Assert.True(salary.Discounts.Count == 1);
             var item = salary.Discounts.FirstOrDefault();
 
-            Assert.Equal(item.Key, DiscountHelper.GetOthersText);
+            Assert.Equal(item.Key, DiscountHelper.GetHealthCareText);
             Assert.Equal(item.Value, value);
         }
 

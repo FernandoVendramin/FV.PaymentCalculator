@@ -1,5 +1,6 @@
 ﻿using FV.PaymentCalculator.Core.Interfaces;
 using FV.PaymentCalculator.Core.Models;
+using FV.PaymentCalculator.Core.Utils;
 
 namespace FV.PaymentCalculator.Core.Services
 {
@@ -15,7 +16,7 @@ namespace FV.PaymentCalculator.Core.Services
         public void Calculate(Salary salary)
         {
             salary.Value = salary.Value - _value;
-            salary.Disconts.Add("Health Care", _value);
+            salary.Discounts.Add(DiscountHelper.GetHealthCareText, _value);
         }
     }
 }

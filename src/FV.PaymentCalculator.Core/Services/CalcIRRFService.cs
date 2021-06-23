@@ -22,23 +22,15 @@ namespace FV.PaymentCalculator.Core.Services
             var calcPaymentItem = new CalcPaymentItem(Messages.IRRFItem);
             var calcValues = new Dictionary<decimal, decimal>();
 
-            //var currentSalary = response.Data.Itens != null
-            //    ? response.Data.Itens.Sum(x => x.Earnings) - response.Data.Itens.Sum(x => x.Discounts)
-            //    : 0;
-
-            //double currentValue = currentSalary;
-            //foreach (var item in _taxConfiguration.IRRFItens)
-            //{
-            //    CalcTaxByRange(currentValue, item, _taxConfiguration.IRRFItens, calcValues);
-            //}
-            foreach (var item in _taxConfiguration.INSSItens)
+            decimal currentValue = salary.Value;
+            foreach (var item in _taxConfiguration.IRRFItens)
             {
-                CalcTaxByRange(salary.Value, item, _taxConfiguration.IRRFItens, calcValues);
+                CalcTaxByRange(currentValue, item, _taxConfiguration.IRRFItens, calcValues);
             }
 
             var discount = (decimal)Math.Round(calcValues.Sum(x => x.Key * x.Value / 100), 2);
             salary.Value = salary.Value - discount;
-            salary.Disconts.Add($"IRRF - {calcValues.Max(x => x.Key)} %", discount);
+            salary.Discounts.Add(DiscountHelper.GetIRRFText(calcValues.Max(x => x.Key)), discount);
         }
     }
 }

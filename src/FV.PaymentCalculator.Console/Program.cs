@@ -111,7 +111,7 @@ namespace FV.PaymentCalculator.Console
                     System.Console.WriteLine(String.Format("|{0,-17}|{1,-15}|", " Evento", " Descontos"));
                     System.Console.WriteLine(" ---------------------------------");
 
-                    foreach (var item in response.Data.Disconts)
+                    foreach (var item in response.Data.Discounts)
                     {
                         System.Console.WriteLine(
                             String.Format("|{0,-17}|{1,-15:C}|",
@@ -123,7 +123,7 @@ namespace FV.PaymentCalculator.Console
                     System.Console.WriteLine("");
 
                     System.Console.ForegroundColor = ConsoleColor.Red;
-                    System.Console.WriteLine($"Descontos: {String.Format("{0,-10:C}", response.Data.Disconts != null ? response.Data.Disconts.Sum(x => x.Value) : 0)}");
+                    System.Console.WriteLine($"Descontos: {String.Format("{0,-10:C}", response.Data.Discounts != null ? response.Data.Discounts.Sum(x => x.Value) : 0)}");
                     System.Console.ResetColor();
 
                     System.Console.ForegroundColor = ConsoleColor.Green;

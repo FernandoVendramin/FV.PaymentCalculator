@@ -2,9 +2,7 @@
 using FV.PaymentCalculator.Core.Interfaces;
 using FV.PaymentCalculator.Core.Models;
 using FV.PaymentCalculator.Core.Services;
-using FV.PaymentCalculator.Core.Utils;
 using FV.PaymentCalculator.Facade.Interfaces;
-using System.Collections.Generic;
 
 namespace FV.PaymentCalculator.Facade
 {

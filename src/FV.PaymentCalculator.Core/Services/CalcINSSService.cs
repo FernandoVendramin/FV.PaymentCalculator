@@ -22,15 +22,15 @@ namespace FV.PaymentCalculator.Core.Services
             var calcPaymentItem = new CalcPaymentItem(Messages.INSSItem);
             var calcValues = new Dictionary<decimal, decimal>();
 
-            //decimal currentValue = salary.Value;
+            decimal currentValue = salary.Value;
             foreach (var item in _taxConfiguration.INSSItens)
             {
-                CalcTaxByRange(salary.Value, item, _taxConfiguration.INSSItens, calcValues);
+                CalcTaxByRange(currentValue, item, _taxConfiguration.INSSItens, calcValues);
             }
 
             var discount = (decimal)Math.Round(calcValues.Sum(x => x.Key * x.Value / 100), 2);
             salary.Value = salary.Value - discount;
-            salary.Disconts.Add($"INSS - {calcValues.Max(x => x.Key)} %", discount);
+            salary.Discounts.Add(DiscountHelper.GetINSSText(calcValues.Max(x => x.Key)), discount);
         }
     }
 }

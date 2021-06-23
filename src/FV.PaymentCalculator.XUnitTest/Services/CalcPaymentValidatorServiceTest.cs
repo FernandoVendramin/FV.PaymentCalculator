@@ -22,7 +22,7 @@ namespace FV.PaymentCalculator.Core.XUnitTest.Services
         public void PaymentValidator_IsValid()
         {
             var request = new CalcPaymentRequest();
-            var salary = double.Parse(_faker.Finance.Amount(1100, 99999).ToString());
+            var salary = decimal.Parse(_faker.Finance.Amount(1100, 99999).ToString());
 
             request.SetSalary(salary);
 
@@ -37,7 +37,7 @@ namespace FV.PaymentCalculator.Core.XUnitTest.Services
         {
             var taxConfiguration = new TaxConfiguration();
             var request = new CalcPaymentRequest();
-            var salary = double.Parse(_faker.Finance.Amount(0, 1099).ToString());
+            var salary = decimal.Parse(_faker.Finance.Amount(0, 1099).ToString());
 
             request.SetSalary(salary);
 
