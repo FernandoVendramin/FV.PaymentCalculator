@@ -67,18 +67,12 @@ namespace FV.PaymentCalculator.Console
         private static void GetCalculateParams()
         {
             decimal decimalValue;
-            int intValue;
 
             var request = new CalcPaymentRequest();
             System.Console.WriteLine("Digite o valor do salário (Apenas números):");
             var salary = System.Console.ReadLine();
             if (decimal.TryParse(salary, out decimalValue))
                 request.SetSalary(decimalValue);
-
-            System.Console.WriteLine("Digite o número de dependentes:");
-            var dependents = System.Console.ReadLine();
-            if (int.TryParse(dependents, out intValue))
-                request.SetDependents(intValue);
 
             System.Console.WriteLine("Digite o valor de outros discontos:");
             var discount = System.Console.ReadLine();
