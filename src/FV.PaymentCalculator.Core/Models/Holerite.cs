@@ -1,5 +1,4 @@
 ﻿using FV.PaymentCalculator.Core.Interfaces;
-using FV.PaymentCalculator.Core.Models;
 using System.Collections.Generic;
 
 namespace FV.PaymentCalculator.Core.Models

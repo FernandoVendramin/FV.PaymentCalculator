@@ -1,9 +1,10 @@
-
-version: '3.4'
+version: "3.4"
 
 services:
   fvpaymentcalculatorconsole:
     image: fvpaymentcalculatorconsole
     build:
       context: .
-      dockerfile: FV.PaymentCalculator.Console/Dockerfile
+      dockerfile: ./Dockerfile
+    volumes:
+      - ~/.vsdbg:c:\remote_debugger:rw

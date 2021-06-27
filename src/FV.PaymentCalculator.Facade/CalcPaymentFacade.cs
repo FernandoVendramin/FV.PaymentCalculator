@@ -32,7 +32,6 @@ namespace FV.PaymentCalculator.Facade
             if (!response.Success)
                 return response;
 
-
             var salary = new Holerite(request.Salary)
                 .AddDiscount(new CalcINSSService())
                 .AddDiscount(new CalcIRRFService())

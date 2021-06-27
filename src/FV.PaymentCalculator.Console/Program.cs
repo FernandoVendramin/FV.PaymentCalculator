@@ -22,35 +22,15 @@ namespace FV.PaymentCalculator.Console
         {
             LoadServiceProvider();
 
-            var running = true;
             System.Console.ForegroundColor = ConsoleColor.White;
             System.Console.BackgroundColor = ConsoleColor.Black;
             System.Console.ResetColor();
-
-            // while (running)
-            // {
             System.Console.ForegroundColor = ConsoleColor.Blue;
+            System.Console.WriteLine();
             System.Console.WriteLine("**** Cálculo de Salário Liquido ****");
+            System.Console.WriteLine();
             System.Console.ResetColor();
-            System.Console.WriteLine(" Digite uma das opções abaixo:");
-            System.Console.WriteLine(" 1 - Calcular");
-            System.Console.WriteLine(" 0 - Sair");
-            System.Console.WriteLine("");
-            System.Console.WriteLine("");
-            var key = System.Console.ReadLine();
-
-            switch (key)
-            {
-                case "0":
-                    running = false; break;
-                case "1":
-                    GetCalculateParams(); break;
-                default:
-                    System.Console.Clear(); break;
-            }
-
-            // System.Console.Clear();
-            // }
+            GetCalculateParams();     
         }
 
         private static void LoadServiceProvider()

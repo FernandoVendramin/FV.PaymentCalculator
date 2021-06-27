@@ -5,9 +5,7 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FV.PaymentCalculator.Console", "src\FV.PaymentCalculator.Console\FV.PaymentCalculator.Console.csproj", "{B81AAC9C-3D30-458F-87E2-C7F268003CC0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FV.PaymentCalculator.Core.XUnitTest", "src\FV.PaymentCalculator.XUnitTest\FV.PaymentCalculator.Core.XUnitTest.csproj", "{47E72230-E7CA-42C1-AF6D-60E203419574}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FV.PaymentCalculator.Core.MsTest", "src\FV.PaymentCalculator.MsTest\FV.PaymentCalculator.Core.MsTest.csproj", "{5902A80C-956F-4F0E-B0B2-400E40E61CF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FV.PaymentCalculator.Core.XUnitTest", "src\FV.PaymentCalculator.Core.XUnitTest\FV.PaymentCalculator.Core.XUnitTest.csproj", "{47E72230-E7CA-42C1-AF6D-60E203419574}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FV.PaymentCalculator.Facade", "src\FV.PaymentCalculator.Facade\FV.PaymentCalculator.Facade.csproj", "{413E96BD-DAA8-45F5-9078-A22BD64BE284}"
 EndProject
@@ -17,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Core", "1 - Core", "{27
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Tests", "2 - Tests", "{C508AF0E-E4B1-4A93-A8CC-C5A76970690E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FV.PaymentCalculator.Core", "src\FV.PaymentCalculator.Core\FV.PaymentCalculator.Core.csproj", "{A3EBC87E-8975-4D7D-A1A6-27834E3A2645}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FV.PaymentCalculator.Core", "src\FV.PaymentCalculator.Core\FV.PaymentCalculator.Core.csproj", "{A3EBC87E-8975-4D7D-A1A6-27834E3A2645}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +31,6 @@ Global
 		{47E72230-E7CA-42C1-AF6D-60E203419574}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47E72230-E7CA-42C1-AF6D-60E203419574}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47E72230-E7CA-42C1-AF6D-60E203419574}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5902A80C-956F-4F0E-B0B2-400E40E61CF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5902A80C-956F-4F0E-B0B2-400E40E61CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5902A80C-956F-4F0E-B0B2-400E40E61CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5902A80C-956F-4F0E-B0B2-400E40E61CF9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{413E96BD-DAA8-45F5-9078-A22BD64BE284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{413E96BD-DAA8-45F5-9078-A22BD64BE284}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{413E96BD-DAA8-45F5-9078-A22BD64BE284}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -52,7 +46,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B81AAC9C-3D30-458F-87E2-C7F268003CC0} = {96AF4894-97DE-4117-945D-890C9D02E424}
 		{47E72230-E7CA-42C1-AF6D-60E203419574} = {C508AF0E-E4B1-4A93-A8CC-C5A76970690E}
-		{5902A80C-956F-4F0E-B0B2-400E40E61CF9} = {C508AF0E-E4B1-4A93-A8CC-C5A76970690E}
 		{413E96BD-DAA8-45F5-9078-A22BD64BE284} = {2700B727-2905-463E-A8F9-DC09978D63F1}
 		{A3EBC87E-8975-4D7D-A1A6-27834E3A2645} = {2700B727-2905-463E-A8F9-DC09978D63F1}
 	EndGlobalSection
