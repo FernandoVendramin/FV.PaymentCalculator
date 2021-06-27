@@ -1,5 +1,6 @@
 ﻿using FV.PaymentCalculator.Core.DTOs;
 using FV.PaymentCalculator.Core.Interfaces;
+using FV.PaymentCalculator.Core.Models;
 using FV.PaymentCalculator.Core.Utils;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace FV.PaymentCalculator.Core.Services
 
     public abstract class CalcService : ICalcService
     {
-        public abstract void Calculate(CalcPaymentRequest calcPaymentRequest, CalcPaymentResponse response);
+        public abstract void Calculate(Salary salary);
 
-        protected void CalcTaxByRange(double salary, TaxItem taxItem, List<TaxItem> taxItens, Dictionary<double, double> calcValues)
+        protected void CalcTaxByRange(decimal salary, TaxItem taxItem, List<TaxItem> taxItens, Dictionary<decimal, decimal> calcValues)
         {
             if (salary >= taxItem.Min && salary <= taxItem.Max)
             {

@@ -1,5 +1,4 @@
 ﻿using FV.PaymentCalculator.Core.DTOs;
-using FV.PaymentCalculator.Core.Factory;
 using FV.PaymentCalculator.Core.Interfaces;
 using FV.PaymentCalculator.Core.Services;
 using FV.PaymentCalculator.Core.Utils;
@@ -23,35 +22,15 @@ namespace FV.PaymentCalculator.Console
         {
             LoadServiceProvider();
 
-            var running = true;
             System.Console.ForegroundColor = ConsoleColor.White;
             System.Console.BackgroundColor = ConsoleColor.Black;
             System.Console.ResetColor();
-
-            while (running)
-            {
-                System.Console.ForegroundColor = ConsoleColor.Blue;
-                System.Console.WriteLine("**** Cálculo de Salário Liquido ****");
-                System.Console.ResetColor();
-                System.Console.WriteLine(" Digite uma das opções abaixo:");
-                System.Console.WriteLine(" 1 - Calcular");
-                System.Console.WriteLine(" 0 - Sair");
-                System.Console.WriteLine("");
-                System.Console.WriteLine("");
-                var key = System.Console.ReadLine();
-
-                switch (key)
-                {
-                    case "0":
-                        running = false; break;
-                    case "1":
-                        GetCalculateParams(); break;
-                    default:
-                        System.Console.Clear(); break;
-                }
-
-                System.Console.Clear();
-            }
+            System.Console.ForegroundColor = ConsoleColor.Blue;
+            System.Console.WriteLine();
+            System.Console.WriteLine("**** Cálculo de Salário Liquido ****");
+            System.Console.WriteLine();
+            System.Console.ResetColor();
+            GetCalculateParams();     
         }
 
         private static void LoadServiceProvider()
@@ -61,31 +40,29 @@ namespace FV.PaymentCalculator.Console
                 .AddSingleton<ICalcPaymentValidatorService, CalcPaymentValidatorService>()
                 .AddSingleton<ICalcINSSService, CalcINSSService>()
                 .AddSingleton<ICalcIRRFService, CalcIRRFService>()
-                .AddSingleton<ICalcServiceFactory, CalcServiceFactory>()
                 .AddSingleton(new TaxConfiguration())
                 .BuildServiceProvider();
         }
 
         private static void GetCalculateParams()
         {
-            double doubleValue;
-            int intValue;
+            decimal decimalValue;
 
             var request = new CalcPaymentRequest();
             System.Console.WriteLine("Digite o valor do salário (Apenas números):");
             var salary = System.Console.ReadLine();
-            if (double.TryParse(salary, out doubleValue))
-                request.SetSalary(doubleValue);
-
-            System.Console.WriteLine("Digite o número de dependentes:");
-            var dependents = System.Console.ReadLine();
-            if (int.TryParse(dependents, out intValue))
-                request.SetDependents(intValue);
+            if (decimal.TryParse(salary, out decimalValue))
+                request.SetSalary(decimalValue);
 
             System.Console.WriteLine("Digite o valor de outros discontos:");
             var discount = System.Console.ReadLine();
-            if (double.TryParse(discount, out doubleValue))
-                request.SetDiscounts(doubleValue);
+            if (decimal.TryParse(discount, out decimalValue))
+                request.SetOtherDiscounts(decimalValue);
+
+            System.Console.WriteLine("Digite o valor do Plano de Saude:");
+            var healthCare = System.Console.ReadLine();
+            if (decimal.TryParse(healthCare, out decimalValue))
+                request.SetHealthCareDiscount(decimalValue);
 
             if (request.Salary == 0)
             {
@@ -104,29 +81,27 @@ namespace FV.PaymentCalculator.Console
                     System.Console.ResetColor();
                     System.Console.WriteLine("");
 
-                    System.Console.WriteLine(" ------------------------------------------------------------");
-                    System.Console.WriteLine(String.Format("|{0,-17}|{1,-10}|{2,-15}|{3,-15}|", " Evento", " Ref (%)", " Proventos", " Descontos"));
-                    System.Console.WriteLine(" ------------------------------------------------------------");
+                    System.Console.WriteLine(" ---------------------------------");
+                    System.Console.WriteLine(String.Format("|{0,-17}|{1,-15}|", " Evento", " Descontos"));
+                    System.Console.WriteLine(" ---------------------------------");
 
-                    foreach (var item in response.Data.Itens)
+                    foreach (var item in response.Data.Discounts)
                     {
                         System.Console.WriteLine(
-                            String.Format("|{0,-17}|{1,-10}|{2,-15:C}|{3,-15:C}|",
-                            item.Item,
-                            item.Reference,
-                            item.Earnings,
-                            item.Discounts));
+                            String.Format("|{0,-17}|{1,-15:C}|",
+                            item.Key,
+                            item.Value));
                     }
-                    System.Console.WriteLine(" ------------------------------------------------------------");
+                    System.Console.WriteLine(" ---------------------------------");
 
                     System.Console.WriteLine("");
 
                     System.Console.ForegroundColor = ConsoleColor.Red;
-                    System.Console.WriteLine($"Descontos: {String.Format("{0,-10:C}", response.Data.Itens != null ? response.Data.Itens.Sum(x => x.Discounts) : 0)}");
+                    System.Console.WriteLine($"Descontos: {String.Format("{0,-10:C}", response.Data.Discounts != null ? response.Data.Discounts.Sum(x => x.Value) : 0)}");
                     System.Console.ResetColor();
 
                     System.Console.ForegroundColor = ConsoleColor.Green;
-                    System.Console.WriteLine($"Salário Líquido: {String.Format("{0,-10:C}", response.Data.Total)}");
+                    System.Console.WriteLine($"Salário Líquido: {String.Format("{0,-10:C}", response.Data.Value)}");
                     System.Console.ResetColor();
 
                 }

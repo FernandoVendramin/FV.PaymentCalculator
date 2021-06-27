@@ -1,5 +1,6 @@
 ﻿using FV.PaymentCalculator.Core.DTOs;
 using FV.PaymentCalculator.Core.Interfaces;
+using FV.PaymentCalculator.Core.Models;
 using FV.PaymentCalculator.Core.Utils;
 using System;
 using System.Collections.Generic;
@@ -16,24 +17,20 @@ namespace FV.PaymentCalculator.Core.Services
             _taxConfiguration = new TaxConfiguration();
         }
 
-        public override void Calculate(CalcPaymentRequest request, CalcPaymentResponse response)
+        public override void Calculate(Salary salary)
         {
             var calcPaymentItem = new CalcPaymentItem(Messages.IRRFItem);
-            var calcValues = new Dictionary<double, double>();
+            var calcValues = new Dictionary<decimal, decimal>();
 
-            var currentSalary = response.Data.Itens != null
-                ? response.Data.Itens.Sum(x => x.Earnings) - response.Data.Itens.Sum(x => x.Discounts)
-                : 0;
-
-            double currentValue = currentSalary;
+            decimal currentValue = salary.Value;
             foreach (var item in _taxConfiguration.IRRFItens)
             {
                 CalcTaxByRange(currentValue, item, _taxConfiguration.IRRFItens, calcValues);
             }
-            calcPaymentItem.SetReference(calcValues.Max(x => x.Key));
-            calcPaymentItem.SetDiscounts(Math.Round(calcValues.Sum(x => x.Key * x.Value / 100), 2));
 
-            response.Data.Itens.Add(calcPaymentItem);
+            var discount = (decimal)Math.Round(calcValues.Sum(x => x.Key * x.Value / 100), 2);
+            salary.Value = salary.Value - discount;
+            salary.Discounts.Add(DiscountHelper.GetIRRFText(calcValues.Max(x => x.Key)), discount);
         }
     }
 }

@@ -8,33 +8,33 @@ namespace FV.PaymentCalculator.Core.DTOs
         { }
 
         public CalcPaymentRequest(
-            double salary,
-            int dependents = 0,
-            double discounts = 0
+            decimal salary,
+            decimal otherDiscounts = 0,
+            decimal healthCareDiscount = 0
             )
         {
             Salary = salary;
-            Dependents = dependents;
-            Discounts = discounts;
+            OtherDiscounts = otherDiscounts;
+            HealthCareDiscount = healthCareDiscount;
         }
 
-        public double Salary { get; private set; }
-        public int Dependents { get; private set; }
-        public double Discounts { get; private set; }
+        public decimal Salary { get; private set; }
+        public decimal OtherDiscounts { get; private set; }
+        public decimal HealthCareDiscount { get; private set; }
 
-        public void SetSalary(double salary)
+        public void SetSalary(decimal salary)
         {
             Salary = salary;
         }
 
-        public void SetDependents(int dependents)
+        public void SetOtherDiscounts(decimal discounts)
         {
-            Dependents = dependents;
+            OtherDiscounts = discounts;
         }
 
-        public void SetDiscounts(double discounts)
+        public void SetHealthCareDiscount(decimal discounts)
         {
-            Discounts = discounts;
+            HealthCareDiscount = discounts;
         }
     }
 }

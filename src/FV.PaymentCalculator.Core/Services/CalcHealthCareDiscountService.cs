@@ -4,11 +4,11 @@ using FV.PaymentCalculator.Core.Utils;
 
 namespace FV.PaymentCalculator.Core.Services
 {
-    public class CalcOtherDiscountsService : Interfaces.ICalcOtherDiscountsService
+    public class CalcHealthCareDiscountService : ICalcHealthCareDiscountService
     {
         private readonly decimal _value = 0;
 
-        public CalcOtherDiscountsService(decimal value)
+        public CalcHealthCareDiscountService(decimal value)
         {
             _value = value;
         }
@@ -16,7 +16,7 @@ namespace FV.PaymentCalculator.Core.Services
         public void Calculate(Salary salary)
         {
             salary.Value = salary.Value - _value;
-            salary.Discounts.Add(DiscountHelper.GetOthersText, _value);
+            salary.Discounts.Add(DiscountHelper.GetHealthCareText, _value);
         }
     }
 }
